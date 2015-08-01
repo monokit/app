@@ -1,11 +1,10 @@
 {
   "name": "monokit/app",
-  "description": "MonoKit App",
-  "license": "proprietary",
+  "description": "MonoKit Starter",
   "authors": [
     {
-      "name": "author's name",
-      "email": "email@example.com"
+      "name": "Micka Van Haren",
+      "email": "micka@azulis.be"
     }
   ],
   "autoload": {
