@@ -8,7 +8,7 @@ class AppController extends Controller
 {
     public function indexAction()
     {
-        return $this->render( "index.view.php" );
+        return $this->render( "start.view.php" );
     }
 
     public function helloAction( $name )
