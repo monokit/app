@@ -1,0 +1,17 @@
+{
+  "name": "vendor_name/package_name",
+  "description": "MonoKit App",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "author's name",
+      "email": "email@example.com"
+    }
+  ],
+  "autoload": {
+    "psr-4" : { "MyApp\\" : "" }
+  },
+  "require": {
+    "monokit/monokit": "dev-master"
+  }
+}
