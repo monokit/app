@@ -8,7 +8,7 @@
     }
   ],
   "autoload": {
-    "psr-4" : { "MyApp\\" : "" }
+    "psr-4" : { "Azulis\\DemoApp\\" : "src/DemoApp" }
   },
   "require": {
     "monokit/monokit": "dev-master"
