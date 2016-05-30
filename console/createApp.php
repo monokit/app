@@ -34,7 +34,7 @@ function generateApp( $AppName )
     createDir( "{$AppRoot}/Assets" );
     createDir( "{$AppRoot}/Config" );
     createDir( "{$AppRoot}/Controller" );
-    createDir( "{$AppRoot}/Entity" );
+    createDir( "{$AppRoot}/EntityManager" );
     createDir( "{$AppRoot}/Manager" );
     createDir( "{$AppRoot}/Public" );
     createDir( "{$AppRoot}/View" );
@@ -50,10 +50,6 @@ function generateApp( $AppName )
     fwrite( $file , "    RewriteEngine On\n" );
     fwrite( $file , "    RewriteCond %{REQUEST_FILENAME} !-d\n" );
     fwrite( $file , "    RewriteCond %{REQUEST_FILENAME} !-f\n" );
-    fwrite( $file , "    RewriteRule (.*\.(css|js|jpg|gif|png|avi|mov|mp4|ogg|woff|woff2))$ indexAsset.php?$1 [NC]\n\n" );
-
-    fwrite( $file , "    RewriteCond %{REQUEST_FILENAME} !-d\n" );
-    fwrite( $file , "    RewriteCond %{REQUEST_FILENAME} !-f\n" );
     fwrite( $file , "    RewriteRule ^(.*)$ index.php?$1 [QSA,L]\n" );
     fwrite( $file , "</IfModule>" );
     fclose( $file );
@@ -63,17 +59,7 @@ function generateApp( $AppName )
     fwrite( $file , "<?php\r\r" );
     fwrite( $file , "   require \"../../../vendor/autoload.php\";\r\r" );
     fwrite( $file , '   $App'." = new \\{$namespace}\\{$AppName}\\{$AppName}();\r" );
-    fwrite( $file , '   $App'."->setAppRegistryFromIniFile( \"../Config/AppConfig.ini\" );\r" );
-    fwrite( $file , '   $App'."->setAppRouterFromIniFile( \"../Config/AppRoute.ini\" );\r" );
     fwrite( $file , '   $App'."->render(\"index.view.php\");" );
-    fclose( $file );
-
-    // Création du fichier Public/indexAsset.php
-    $file = fopen( "../src/{$AppName}/Public/indexAsset.php" , "w" );
-    fwrite( $file , "<?php\r\r" );
-    fwrite( $file , "   require \"../../../vendor/autoload.php\";\r\r" );
-    fwrite( $file , '   $App'." = new \\{$namespace}\\{$AppName}\\{$AppName}();\r" );
-    fwrite( $file , '   $App'."->renderAsset( ".'$App'."->getUrlRequest()->getUrl() );" );
     fclose( $file );
 
     // Création du fichier Controller/AppController.php
@@ -87,12 +73,12 @@ function generateApp( $AppName )
     fwrite( $file , "<html>\r" );
     fwrite( $file , "<head>\r" );
     fwrite( $file , "    <meta charset=\"utf-8\">\r" );
-    fwrite( $file , "    <base href=\"<?php echo __ROOT__; ?>\"/>\r" );
-    fwrite( $file , "    <title><?php echo \$this->AppRegistry(\"HTML.title\"); ?></title>\r\r" );
+    fwrite( $file , "    <base href=\"{{AppRoot}}\"/>\r" );
+    fwrite( $file , "    <title>{{AppName}}</title>\r\r" );
     fwrite( $file , "    <link rel=\"stylesheet\" href=\"css/stylesheet.css\">\r\r" );
     fwrite( $file , "</head>\r" );
     fwrite( $file , "<body>\r" );
-    fwrite( $file , "   <?php echo HTML_CONTENT; ?>\r" );
+    fwrite( $file , "   {{AppContent}}\r" );
     fwrite( $file , "</body>\r" );
     fwrite( $file , "</html>\r" );
     fclose( $file );
