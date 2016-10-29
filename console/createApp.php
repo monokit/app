@@ -31,10 +31,9 @@ function generateApp( $AppName )
 
     // Création des dossiers
     createDir( $AppRoot );
-    createDir( "{$AppRoot}/Assets" );
     createDir( "{$AppRoot}/Config" );
     createDir( "{$AppRoot}/Controller" );
-    createDir( "{$AppRoot}/EntityManager" );
+    createDir( "{$AppRoot}/Entity" );
     createDir( "{$AppRoot}/Manager" );
     createDir( "{$AppRoot}/Public" );
     createDir( "{$AppRoot}/View" );
@@ -59,7 +58,7 @@ function generateApp( $AppName )
     fwrite( $file , "<?php\r\r" );
     fwrite( $file , "   require \"../../../vendor/autoload.php\";\r\r" );
     fwrite( $file , '   $App'." = new \\{$namespace}\\{$AppName}\\{$AppName}();\r" );
-    fwrite( $file , '   $App'."->render(\"index.view.php\");" );
+    fwrite( $file , '   $App'."->render(\"index\");" );
     fclose( $file );
 
     // Création du fichier Controller/AppController.php
@@ -75,7 +74,7 @@ function generateApp( $AppName )
     fwrite( $file , "    <meta charset=\"utf-8\">\r" );
     fwrite( $file , "    <base href=\"{{AppRoot}}\"/>\r" );
     fwrite( $file , "    <title>{{AppName}}</title>\r\r" );
-    fwrite( $file , "    <link rel=\"stylesheet\" href=\"css/stylesheet.css\">\r\r" );
+    //fwrite( $file , "    <link rel=\"stylesheet\" href=\"css/stylesheet.css\">\r\r" );
     fwrite( $file , "</head>\r" );
     fwrite( $file , "<body>\r" );
     fwrite( $file , "   {{AppContent}}\r" );
