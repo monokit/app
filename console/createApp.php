@@ -63,7 +63,7 @@ function generateApp( $AppName )
 
     // Création du fichier Controller/AppController.php
     $file = fopen( "../src/{$AppName}/Controller/AppController.php" , "w" );
-    fwrite( $file , "<?php\r\rnamespace {$AppNameSpace}\\Controller;\r\ruse MonoKit\\Controller\\Controller;\r\rClass AppController extends Controller {}" );
+    fwrite( $file , "<?php\r\rnamespace {$AppNameSpace}\\Controller;\r\ruse MonoKit\\Controller\\AbstractController;\r\rClass AppController extends AbstractController {}" );
     fclose( $file );
 
     // Création du fichier View/index.view.php
@@ -74,7 +74,6 @@ function generateApp( $AppName )
     fwrite( $file , "    <meta charset=\"utf-8\">\r" );
     fwrite( $file , "    <base href=\"{{AppRoot}}\"/>\r" );
     fwrite( $file , "    <title>{{AppName}}</title>\r\r" );
-    //fwrite( $file , "    <link rel=\"stylesheet\" href=\"css/stylesheet.css\">\r\r" );
     fwrite( $file , "</head>\r" );
     fwrite( $file , "<body>\r" );
     fwrite( $file , "   {{AppContent}}\r" );
