@@ -1,0 +1,7 @@
+<?php
+
+namespace {{NAMESPACE}}\Controller;
+
+use MonoKit\Controller\Controller;
+
+Class AppController extends Controller {}

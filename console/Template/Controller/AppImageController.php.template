@@ -1,0 +1,32 @@
+<?php
+
+namespace {{NAMESPACE}}\Controller;
+
+use MonoKit\Component\Image\Image;
+use MonoKit\Component\Image\ImageResource;
+use MonoKit\Http\Response\ResponseImageResource;
+
+Class AppImageController extends AppController
+{
+    public function getImageResourceFromFilePath( $imagePath , $type = Image::SRC )
+    {
+        $ImageResource = new ImageResource( $imagePath );
+
+        switch ( $type )
+        {
+            case Image::THUMB:
+                $ImageResource->setMaxSize( Image::THUMB_SIZE );
+                $ImageResource->square( Image::THUMB_SIZE );
+                break;
+
+            case Image::SQUARE:
+                $ImageResource->square( Image::SQUARE_SIZE );
+                break;
+
+            default:
+                $ImageResource->setMaxSize( Image::SRC_SIZE );
+        }
+
+        return new ResponseImageResource( $ImageResource );
+    }
+}

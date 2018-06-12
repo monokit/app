@@ -8,7 +8,10 @@
     }
   ],
   "autoload": {
-    "psr-4" : { "MonokitApp\\DemoApp\\" : "src/DemoApp" }
+    "psr-4" : {
+      "Monokit\\ConsoleApp\\" : "console",
+      "MonokitApp\\MainApp\\" : "src/MainApp"
+    }
   },
   "require": {
     "monokit/monokit": "dev-master"

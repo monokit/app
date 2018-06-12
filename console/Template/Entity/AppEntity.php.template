@@ -1,0 +1,29 @@
+<?php
+
+namespace {{NAMESPACE}}\Entity;
+
+use MonoKit\EntityManager\Entity;
+
+Abstract Class AppEntity extends Entity
+{
+    /** @var int */
+    protected $id;
+
+    /**
+     * @param int $id
+     * @return AppEntity
+     */
+    public function setId( $id )
+    {
+        $this->id = (int) $id;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}

@@ -1,0 +1,7 @@
+<?php
+
+namespace {{NAMESPACE}}\Manager;
+
+use MonoKit\EntityManager\EntityManagerMysqli;
+
+Class AppManager extends EntityManagerMysqli {}
